@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import { Header, Home, ProductView, Form, Cart } from "./components";
+import * as React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Route, BrowserRouter, Redirect, Switch } from "react-router-dom";
+import Container from "@mui/material/Container";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <BrowserRouter>
+      <Container maxWidth="xl">
+        <Header items={useSelector((state) => state.cart.length)} />
+        <ToastContainer />
 
+        <Switch>
+          <Route path="/" exact component={() => <Redirect to="/products" />} />
+          <Route path="/products/" strict component={Home} />
+          <Route path="/products" exact component={Home} />
+
+          <Route path="/product/:id" exact component={ProductView} />
+          <Route path="/myBag" exact component={Cart} />
+          <Route path="/form" exact component={Form} />
+        </Switch>
+      </Container>
+    </BrowserRouter>
+  );
+};
 export default App;
