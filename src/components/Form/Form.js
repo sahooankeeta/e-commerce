@@ -28,10 +28,10 @@ const Form = () => {
     company: "",
     title: "",
     description: "",
-    price: 0,
+    price: null,
     category: "",
     gender: "",
-    rating: 0,
+    rating: null,
     images: [],
     specifications: {},
   });
@@ -48,7 +48,7 @@ const Form = () => {
       "sweaters and sweatshirts",
     ],
     ["t-shirts", "trousers"],
-    ["dress", "tops"],
+    ["dress"],
   ];
 
   React.useEffect(() => {
@@ -101,10 +101,10 @@ const Form = () => {
       company: "",
       title: "",
       description: "",
-      price: "",
+      price: 0,
       category: "",
       gender: "",
-      rating: "",
+      rating: 0,
       images: [],
       specifications: {},
     });
@@ -113,13 +113,13 @@ const Form = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("sub");
+
     avatars.map((a) =>
       setProduct({ ...product, images: product.images.push(a.link) })
     );
 
     fields.map((s) => (product.specifications[s.key] = s.value));
-    console.log(product);
+    //console.log(product);
     if (item) dispatch(updateProduct(product));
     else dispatch(addProduct(product));
     clear();
@@ -181,7 +181,7 @@ const Form = () => {
               halfWidth
               value={product.price}
               onChange={(e) =>
-                setProduct({ ...product, price: e.target.value })
+                setProduct({ ...product, price: +e.target.value })
               }
             ></TextField>
             <TextField
@@ -194,10 +194,13 @@ const Form = () => {
               label="Rating"
               value={product.rating}
               onChange={(e) =>
-                setProduct({ ...product, rating: e.target.value })
+                setProduct({ ...product, rating: +e.target.value })
               }
             ></TextField>
-            <FormControl sx={{ m: 1, minWidth: 150 }} style={{ margin: "0" }}>
+            <FormControl
+              sx={{ m: 1, minWidth: 150 }}
+              style={{ margin: "0", marginRight: "10px" }}
+            >
               <InputLabel id="demo-simple-select-label">Gender</InputLabel>
               <Select
                 required

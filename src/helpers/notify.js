@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 
-export const notify = (t, message) => {
+const notify = (t, message) => {
   toast(message, { type: t });
 };
+export default notify;

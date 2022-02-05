@@ -1,15 +1,25 @@
 import * as React from "react";
 import Grid from "@mui/material/Grid";
+import { useHistory, useParams, useLocation } from "react-router-dom";
+
 import Product from "./Product/Product";
 import Paper from "@mui/material/Paper";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useSelector, useDispatch } from "react-redux";
 import useStyles from "./styles";
-const Products = () => {
+import { getProducts } from "./../../actions";
+const Products = ({ t, page, sort }) => {
   const classes = useStyles();
   const products = useSelector((state) => state.products);
+  // const t = useLocation().pathname.substring(1);
+  // const query = new URLSearchParams(useLocation().search);
+  // const page = query.get("page") || 1;
+  const dispatch = useDispatch();
   const error = useSelector((state) => state.error);
   const isLoading = useSelector((state) => state.isLoading);
+  React.useEffect(() => {
+    dispatch(getProducts(t, page, sort));
+  }, [dispatch, t, page]);
 
   if (error) return <div>{error}</div>;
   if (isLoading)

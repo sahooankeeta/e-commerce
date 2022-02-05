@@ -22,7 +22,7 @@ const pageItems = [
     "sweaters and sweatshirts",
   ],
   ["t-shirts", "trousers"],
-  ["dress", "tops"],
+  ["dress"],
 ];
 
 const Header = ({ items }) => {
@@ -41,6 +41,7 @@ const Header = ({ items }) => {
           <Nav className="me-auto">
             {pages.map((page, i) => (
               <Nav.Link
+                key={i}
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -51,8 +52,9 @@ const Header = ({ items }) => {
                   {page}
                 </span>
                 <NavDropdown title="" id="basic-nav-dropdown">
-                  {pageItems[i].map((item) => (
+                  {pageItems[i].map((item, i) => (
                     <NavDropdown.Item
+                      key={i}
                       onClick={() => history.push(`/products/${page}/${item}`)}
                     >
                       {item}

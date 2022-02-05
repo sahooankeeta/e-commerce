@@ -1,4 +1,5 @@
 import * as React from "react";
+import NumberFormat from "react-number-format";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteProduct } from "./../../../actions";
@@ -39,7 +40,12 @@ const Product = ({ product }) => {
             {product.title}
           </Typography>
           <Typography style={{ fontWeight: "600" }}>
-            Rs . {product.price}
+            Rs .
+            <NumberFormat
+              value={product.price}
+              displayType="text"
+              thousandSeparator={true}
+            />
           </Typography>
         </CardContent>
       </div>

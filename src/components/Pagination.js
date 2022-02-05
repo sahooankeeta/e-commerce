@@ -1,13 +1,16 @@
 import * as React from "react";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
+import { useHistory, useParams, useLocation } from "react-router-dom";
+
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../actions";
 //import useStyles from "./styles";
 const Paginate = ({ page }) => {
+  const history = useHistory();
   //const { numberOfPages } = useSelector((state) => state.numberOfPages);
-  const numberOfPages = 5;
+  const numberOfPages = useSelector((state) => state.totalPages);
   // console.log("pages", numberOfPages);
   //const classes = useStyles();
   const dispatch = useDispatch();
@@ -23,8 +26,7 @@ const Paginate = ({ page }) => {
       renderItem={(item) => (
         <PaginationItem
           {...item}
-          component={Link}
-          to={`/products?page=${item.page}`}
+          onClick={() => history.push(`/products?page=${item.page}`)}
         />
       )}
     />

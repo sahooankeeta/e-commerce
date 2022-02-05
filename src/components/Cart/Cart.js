@@ -1,5 +1,7 @@
 import * as React from "react";
+import NumberFormat from "react-number-format";
 import { useSelector } from "react-redux";
+import Typography from "@mui/material/Typography";
 import CartItem from "./CartItem/CartItem";
 import Grid from "@mui/material/Grid";
 const Cart = () => {
@@ -10,18 +12,30 @@ const Cart = () => {
     return cartcount;
   };
   return (
-    <Grid container className="cart" spacing={2}>
-      <Grid item lg={12}>
+    <Grid container className="cart" justifyContent="space-around">
+      <Grid item sm={12} md={8} lg={5}>
         {products.length > 0 ? (
-          products.map((product) => {
-            return <CartItem product={product} key={product.id} />;
+          products.map((product, i) => {
+            return <CartItem product={product} key={`cartItem-${i}`} />;
           })
         ) : (
-          <div>your bag empty</div>
+          <h3>Your bag empty.Start shopping now :)</h3>
         )}
       </Grid>
-      <Grid item lg={12} style={{ margin: "0 auto" }}>
-        <div>bag total :{total()}</div>
+      <Grid item sm={12} md={3} lg={3}>
+        <div style={{ margin: "0 auto" }}>
+          <Typography variant="h3" style={{ textTransform: "capitalize" }}>
+            bag total :
+          </Typography>
+          <Typography variant="h4">
+            Rs .
+            <NumberFormat
+              value={total()}
+              displayType="text"
+              thousandSeparator={true}
+            />
+          </Typography>
+        </div>
       </Grid>
     </Grid>
   );
