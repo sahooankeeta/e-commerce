@@ -1,13 +1,14 @@
 import notify from "../helpers/notify";
 import * as actionType from "./../helpers/constants";
+const api = actionType.URL;
 export const getProducts = (path, page, sort) => (dispatch) => {
   const temp = path.split("/");
 
   const link = sort
-    ? `http://localhost:5000/${temp[0]}?_sort=price&_order=${sort}${
+    ? `${api}/${temp[0]}?_sort=price&_order=${sort}${
         temp[1] ? `&gender=${temp[1]}` : ""
       }${temp[2] ? `&category=${temp[2]}` : ""}&_page=${page}`
-    : `http://localhost:5000/${temp[0]}?${temp[1] ? `&gender=${temp[1]}` : ""}${
+    : `${api}/${temp[0]}?${temp[1] ? `&gender=${temp[1]}` : ""}${
         temp[2] ? `&category=${temp[2]}` : ""
       }&_page=${page}`;
   dispatch({ type: actionType.SET_LOADING, payload: true });
@@ -37,7 +38,7 @@ export const getProducts = (path, page, sort) => (dispatch) => {
 
 export const getProduct = (id) => (dispatch) => {
   dispatch({ type: actionType.SET_LOADING, payload: true });
-  fetch(`http://localhost:5000/products/${id}`)
+  fetch(`${api}/products/${id}`)
     .then((res) => res.json())
     .then(
       (data) => {
@@ -56,7 +57,7 @@ export const getProduct = (id) => (dispatch) => {
 export const addProduct = (product) => (dispatch) => {
   notify("info", "please wait :)");
   dispatch({ type: actionType.SET_LOADING, payload: true });
-  fetch("http://localhost:5000/products", {
+  fetch(`${api}/products`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(product),
@@ -78,7 +79,7 @@ export const addProduct = (product) => (dispatch) => {
 };
 export const deleteProduct = (id) => (dispatch) => {
   notify("info", "please wait for deletion");
-  fetch(`http://localhost:5000/products/${id}`, {
+  fetch(`${api}/products/${id}`, {
     method: "DELETE",
   });
   dispatch({ type: actionType.DELETE_PRODUCT, payload: id });
@@ -88,7 +89,7 @@ export const deleteProduct = (id) => (dispatch) => {
 export const updateProduct = (product) => (dispatch) => {
   //console.log(product);
   notify("info", "please wait for update");
-  fetch(`http://localhost:5000/products/${product.id}`, {
+  fetch(`${api}/products/${product.id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(product),
