@@ -6,11 +6,11 @@ const middlewares = jsonServer.defaults({
 });
 const port = 5000;
 server.use(middlewares);
-// server.use(
-//   jsonServer.rewriter({
-//     "/api/*": "/$1",
-//   })
-// );
+server.use(
+  jsonServer.rewriter({
+    "/api/*": "/$1",
+  })
+);
 server.use(router);
 server.listen(port, () => {
   console.log("server running");
