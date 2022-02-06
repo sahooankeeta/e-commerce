@@ -1,6 +1,18 @@
-# Getting Started with Create React App
+# Insta-Fashion E-commerce App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+<hr>
+Frontend for an ecommerce website built with React and dummy api using Typicode Json Server.
+<hr>
+
+<h2>Landing Page</h2>
+ <a href="https://drive.google.com/uc?export=view&id=1JZldX-Qu23KK4QGo1eDAUrlLXdwh37A7"><img src="https://drive.google.com/uc?export=view&id=1JZldX-Qu23KK4QGo1eDAUrlLXdwh37A7"  />
+ 
+<h2>Product Page</h2>
+<a href="https://drive.google.com/uc?export=view&id=1S_Z6zwgdoHoYUCQyWl6f8voioZMpVQN7"><img src="https://drive.google.com/uc?export=view&id=1S_Z6zwgdoHoYUCQyWl6f8voioZMpVQN7"  />
+ 
+ <h2>Cart Page</h2>
+  <a href="https://drive.google.com/uc?export=view&id=1s0D36QNH0QN4V63PYvjis9o5Jup8ZLAb"><img src="https://drive.google.com/uc?export=view&id=1s0D36QNH0QN4V63PYvjis9o5Jup8ZLAb"  />
 
 ## Available Scripts
 
