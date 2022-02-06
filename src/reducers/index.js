@@ -43,7 +43,7 @@ const reducer = (state = initialState, action) => {
         product: { ...state.product, inCart: false },
       };
     case actionType.UPDATE_CART:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         cart: state.cart.map((item) =>

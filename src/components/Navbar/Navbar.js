@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Container, NavLink } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import Box from "@mui/material/Box";
 import Badge from "@mui/material/Badge";
@@ -40,7 +40,7 @@ const Header = ({ items }) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             {pages.map((page, i) => (
-              <Nav.Link
+              <NavLink
                 key={i}
                 style={{
                   display: "flex",
@@ -61,7 +61,7 @@ const Header = ({ items }) => {
                     </NavDropdown.Item>
                   ))}
                 </NavDropdown>
-              </Nav.Link>
+              </NavLink>
             ))}
           </Nav>
         </Navbar.Collapse>

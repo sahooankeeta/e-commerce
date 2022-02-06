@@ -2,7 +2,7 @@ import notify from "../helpers/notify";
 import * as actionType from "./../helpers/constants";
 export const getProducts = (path, page, sort) => (dispatch) => {
   const temp = path.split("/");
-  console.log(page, sort);
+
   const link = sort
     ? `http://localhost:5000/${temp[0]}?_sort=price&_order=${sort}${
         temp[1] ? `&gender=${temp[1]}` : ""
@@ -28,7 +28,7 @@ export const getProducts = (path, page, sort) => (dispatch) => {
         dispatch({ type: actionType.SET_LOADING, payload: false });
       },
       (error) => {
-        console.log(error);
+        //console.log(error);
         dispatch({ type: actionType.SET_ERROR, payload: error.message });
         dispatch({ type: actionType.SET_LOADING, payload: false });
       }
@@ -47,7 +47,7 @@ export const getProduct = (id) => (dispatch) => {
         dispatch({ type: actionType.SET_LOADING, payload: false });
       },
       (error) => {
-        console.log(error);
+        //console.log(error);
         dispatch({ type: actionType.SET_ERROR, payload: error.message });
         dispatch({ type: actionType.SET_LOADING, payload: false });
       }
@@ -69,7 +69,7 @@ export const addProduct = (product) => (dispatch) => {
         notify("success", "product added :)");
       },
       (error) => {
-        console.log(error);
+        //console.log(error);
         dispatch({ type: actionType.SET_ERROR, payload: error.message });
         dispatch({ type: actionType.SET_LOADING, payload: false });
         notify("error", "sorry error occured retry :(");

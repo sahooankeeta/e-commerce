@@ -20,7 +20,7 @@ const CartItem = ({ product }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const updateSize = (productId, produvtSize) => {
-    console.log(produvtSize);
+    //console.log(produvtSize);
     dispatch({
       type: actionType.UPDATE_CART,
       payload: { id: productId, size: produvtSize },
