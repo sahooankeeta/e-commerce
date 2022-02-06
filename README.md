@@ -1,6 +1,5 @@
 # Insta-Fashion E-commerce App
 
-
 <hr>
 Frontend for an ecommerce website built with React and dummy api using Typicode Json Server.
 <hr>
