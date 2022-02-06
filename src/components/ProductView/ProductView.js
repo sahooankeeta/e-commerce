@@ -26,7 +26,12 @@ import useStyles from "./styles.js";
 import { getProduct } from "./../../actions";
 const ProductView = () => {
   const history = useHistory();
-  const { isLoading, product, products, cart } = useSelector((state) => state);
+  const { isLoading, product, cart } = useSelector((state) => state);
+  const products = useSelector((state) => {
+    if (state.products.length === 0)
+      return JSON.parse(localStorage.getItem("products"));
+    else return state.products;
+  });
 
   const [inBag, setInBag] = React.useState(false);
   const classes = useStyles();
@@ -34,7 +39,6 @@ const ProductView = () => {
   const { id } = useParams();
 
   React.useEffect(() => {
-    //console.log("in");
     if (id) {
       dispatch(getProduct(id));
       if (cart.some((item) => item.id === id)) setInBag(true);
@@ -44,7 +48,7 @@ const ProductView = () => {
 
   const [index, setIndex] = React.useState(0);
   const [size, setSize] = React.useState("");
-  //console.log("bag", inBag);
+
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
@@ -74,8 +78,7 @@ const ProductView = () => {
 
   let recommendedProducts = products?.filter((item) => item.id !== id);
   recommendedProducts = recommendedProducts.slice(0, 4);
-  //console.log(recommendedProducts);
-  //console.log(products);
+
   if (!product) return null;
   if (isLoading)
     return (
@@ -83,7 +86,7 @@ const ProductView = () => {
         <CircularProgress size="7em" />
       </Paper>
     );
-  //console.log(product);
+
   return (
     <main>
       <Grid container alignItems="stretch" spacing={5}>
@@ -97,7 +100,7 @@ const ProductView = () => {
                 className={classes.carousel}
               >
                 {product.images.map((image, i) => (
-                  <Carousel.Item>
+                  <Carousel.Item key={i}>
                     <img
                       className="d-block w-100"
                       src={image}

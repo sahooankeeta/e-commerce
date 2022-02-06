@@ -11,9 +11,7 @@ import { getProducts } from "./../../actions";
 const Products = ({ t, page, sort }) => {
   const classes = useStyles();
   const products = useSelector((state) => state.products);
-  // const t = useLocation().pathname.substring(1);
-  // const query = new URLSearchParams(useLocation().search);
-  // const page = query.get("page") || 1;
+
   const dispatch = useDispatch();
   const error = useSelector((state) => state.error);
   const isLoading = useSelector((state) => state.isLoading);
@@ -28,6 +26,7 @@ const Products = ({ t, page, sort }) => {
         <CircularProgress size="7em" />
       </Paper>
     );
+  localStorage.setItem("products", JSON.stringify(products));
   return (
     <main className={classes.content}>
       <Grid container alignItems="stretch" spacing={3}>

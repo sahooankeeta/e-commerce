@@ -1,6 +1,7 @@
 import notify from "../helpers/notify";
 import * as actionType from "./../helpers/constants";
 const api = actionType.URL;
+//FETCH PRODUCTS
 export const getProducts = (path, page, sort) => (dispatch) => {
   const temp = path.split("/");
 
@@ -29,31 +30,31 @@ export const getProducts = (path, page, sort) => (dispatch) => {
         dispatch({ type: actionType.SET_LOADING, payload: false });
       },
       (error) => {
-        //console.log(error);
         dispatch({ type: actionType.SET_ERROR, payload: error.message });
         dispatch({ type: actionType.SET_LOADING, payload: false });
       }
     );
 };
 
+//FETCH A SNGLE PRODUCTS
 export const getProduct = (id) => (dispatch) => {
   dispatch({ type: actionType.SET_LOADING, payload: true });
   fetch(`${api}/products/${id}`)
     .then((res) => res.json())
     .then(
       (data) => {
-        //console.log(id, data);
         dispatch({ type: actionType.GET_PRODUCT, payload: { product: data } });
 
         dispatch({ type: actionType.SET_LOADING, payload: false });
       },
       (error) => {
-        //console.log(error);
         dispatch({ type: actionType.SET_ERROR, payload: error.message });
         dispatch({ type: actionType.SET_LOADING, payload: false });
       }
     );
 };
+
+//ADD NEW PRODUCT
 export const addProduct = (product) => (dispatch) => {
   notify("info", "please wait :)");
   dispatch({ type: actionType.SET_LOADING, payload: true });
@@ -70,13 +71,14 @@ export const addProduct = (product) => (dispatch) => {
         notify("success", "product added :)");
       },
       (error) => {
-        //console.log(error);
         dispatch({ type: actionType.SET_ERROR, payload: error.message });
         dispatch({ type: actionType.SET_LOADING, payload: false });
         notify("error", "sorry error occured retry :(");
       }
     );
 };
+
+//DELETE PRODUCT
 export const deleteProduct = (id) => (dispatch) => {
   notify("info", "please wait for deletion");
   fetch(`${api}/products/${id}`, {
@@ -86,8 +88,9 @@ export const deleteProduct = (id) => (dispatch) => {
 
   notify("success", "product deleted :)");
 };
+
+//UPDATE PRODUCT
 export const updateProduct = (product) => (dispatch) => {
-  //console.log(product);
   notify("info", "please wait for update");
   fetch(`${api}/products/${product.id}`, {
     method: "PATCH",

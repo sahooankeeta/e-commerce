@@ -5,7 +5,7 @@ import useStyles from "./styles";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import NumberFormat from "react-number-format";
 import * as actionType from "./../../../helpers/constants";
-import { useParams, useLocation, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
@@ -13,25 +13,28 @@ import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
+
 const CartItem = ({ product }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
-  const updateSize = (productId, produvtSize) => {
-    //console.log(produvtSize);
+
+  //UPDATE SIZE OF PRODUCT IN CART
+  const updateSize = (productId, productSize) => {
     dispatch({
       type: actionType.UPDATE_CART,
-      payload: { id: productId, size: produvtSize },
+      payload: { id: productId, size: productSize },
     });
   };
+  //INCREASE ITEM QUANTITY
   const increaseQuantity = (id) => {
     dispatch({ type: actionType.INCREASE_QUANTITY, payload: id });
   };
+  //DECREASE ITEM QUANTITY
   const decreaseQuantity = (id) => {
     dispatch({ type: actionType.DECREASE_QUANTITY, payload: id });
   };
+  //REMOVE ITEM FROM CART
   const deleteItem = (id) => {
     dispatch({ type: actionType.REMOVE_FROM_CART, payload: id });
   };

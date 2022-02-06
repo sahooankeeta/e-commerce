@@ -18,7 +18,7 @@ import useStyles from "./styles";
 const Form = () => {
   const classes = useStyles();
   const id = new URLSearchParams(useLocation().search).get("id");
-  //console.log(useParams());
+
   const item = useSelector((state) =>
     id ? state.products.find((p) => p.id === id) : null
   );
@@ -37,6 +37,7 @@ const Form = () => {
   });
   const [fields, setField] = React.useState([{ key: "", value: "" }]);
   const [avatars, setAvatar] = React.useState([{ link: "" }]);
+  //CATEGORIES
   const pages = ["men", "women", "boys", "girls"];
   const pageItems = [
     ["t-shirts", "shirts", "jackets", "trousers"],
@@ -111,6 +112,8 @@ const Form = () => {
     setField([{ key: "", value: "" }]);
     setAvatar([{ link: "" }]);
   };
+
+  //HANDLE FORM SUBMIT
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -119,7 +122,7 @@ const Form = () => {
     );
 
     fields.map((s) => (product.specifications[s.key] = s.value));
-    //console.log(product);
+
     if (item) dispatch(updateProduct(product));
     else dispatch(addProduct(product));
     clear();
@@ -136,7 +139,7 @@ const Form = () => {
             onSubmit={handleSubmit}
           >
             <Typography variant="h3" component="h2" gutterBottom>
-              {item ? "update" : "create"} product
+              {item ? "Update" : "Create"} Product
             </Typography>
             <TextField
               required

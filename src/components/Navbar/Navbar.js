@@ -5,12 +5,12 @@ import Box from "@mui/material/Box";
 import Badge from "@mui/material/Badge";
 import IconButton from "@mui/material/IconButton";
 
-//import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 
 import { useHistory } from "react-router-dom";
 import useStyles from "./styles";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+//CATEGORIES
 const pages = ["men", "women", "boys", "girls"];
 const pageItems = [
   ["t-shirts", "shirts", "jackets", "trousers"],
@@ -34,7 +34,7 @@ const Header = ({ items }) => {
     <Navbar bg="dark" variant="dark" expand="lg" className={classes.navbar}>
       <Container>
         <Navbar.Brand onClick={() => history.push("/")}>
-          React-Bootstrap
+          Insta-Fashion
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

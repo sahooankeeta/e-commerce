@@ -1,6 +1,6 @@
 import { Header, Home, ProductView, Form, Cart } from "./components";
 import * as React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Route, BrowserRouter, Redirect, Switch } from "react-router-dom";
 import Container from "@mui/material/Container";
 import { ToastContainer } from "react-toastify";
@@ -9,7 +9,12 @@ const App = () => {
   return (
     <BrowserRouter>
       <Container maxWidth="xl">
-        <Header items={useSelector((state) => state.cart.length)} />
+        <Header
+          items={useSelector((state) => {
+            localStorage.setItem("cart", JSON.stringify(state.cart));
+            return state.cart.length;
+          })}
+        />
         <ToastContainer />
 
         <Switch>

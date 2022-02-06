@@ -6,27 +6,25 @@ import { useHistory, useParams, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../actions";
-//import useStyles from "./styles";
+
 const Paginate = ({ page }) => {
   const history = useHistory();
-  //const { numberOfPages } = useSelector((state) => state.numberOfPages);
+  const path = useLocation().pathname;
   const numberOfPages = useSelector((state) => state.totalPages);
-  // console.log("pages", numberOfPages);
-  //const classes = useStyles();
+
   const dispatch = useDispatch();
   React.useEffect(() => {
-    if (page) dispatch(getProducts("products", page, null));
+    if (page) dispatch(getProducts(path.substring(1), page, null));
   }, [dispatch, page]);
   return (
     <Pagination
-      //className={{ ul: classes.ul }}
       count={numberOfPages}
       page={Number(page) || 1}
       color="primary"
       renderItem={(item) => (
         <PaginationItem
           {...item}
-          onClick={() => history.push(`/products?page=${item.page}`)}
+          onClick={() => history.push(`${path}?page=${item.page}`)}
         />
       )}
     />

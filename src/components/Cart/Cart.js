@@ -6,6 +6,8 @@ import CartItem from "./CartItem/CartItem";
 import Grid from "@mui/material/Grid";
 const Cart = () => {
   const products = useSelector((state) => state.cart);
+  localStorage.setItem("cart", JSON.stringify(products));
+  //CALCULATE BAG TOTAL
   const total = () => {
     let cartcount = 0;
     products.forEach((el) => (cartcount += el.price * el.qty));
