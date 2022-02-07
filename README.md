@@ -12,7 +12,14 @@ Frontend for an ecommerce website built with React and dummy api using Typicode 
  
  <h2>Cart Page</h2>
   <a href="https://drive.google.com/uc?export=view&id=1s0D36QNH0QN4V63PYvjis9o5Jup8ZLAb"><img src="https://drive.google.com/uc?export=view&id=1s0D36QNH0QN4V63PYvjis9o5Jup8ZLAb"  />
-
+ 
+ <h2> API</h2>
+   
+It has been made with typicode json server. 
+   
+   <p>The git repo for this can be found <a href="https://github.com/sahooankeeta/e-commerce-api">here</a>.</p>
+   
+API for this project can be found [https://insta-fashion-api.herokuapp.com](https://insta-fashion-api.herokuapp.com).
 ## Available Scripts
 
 In the project directory, you can run:
