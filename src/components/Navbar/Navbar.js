@@ -73,17 +73,6 @@ const Header = ({ items }) => {
               <ShoppingCartIcon style={{ color: "grey" }} />
             </Badge>
           </Nav.Link>
-          <NavDropdown
-            title={
-              <IconButton sx={{ p: 0, color: "grey" }}>
-                <Avatar alt="Remy Sharp" src="" />
-              </IconButton>
-            }
-            id="basic-nav-dropdown"
-          >
-            <NavDropdown.Item href="#action/3.1">profile</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">bag</NavDropdown.Item>
-          </NavDropdown>
         </Box>
       </Container>
     </Navbar>
